@@ -2,7 +2,10 @@ import mkdirp from 'mkdirp'
 import formidable from 'formidable'
 import objectPath from 'object-path'
 
-export function processRequest(request, { uploadDir } = {}) {
+export function processRequest(request, uploadDir) {
+  if (uploadDir && typeof uploadDir === 'string') {
+    uploadDir = { uploadDir: uplaodDir };
+  }
   // Ensure provided upload directory exists
   if (uploadDir) mkdirp.sync(uploadDir)
 
